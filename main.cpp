@@ -36,17 +36,17 @@ void insert ()
 {
 cout<<"\nPlease insert your first name, last name and ID number. "<<endl;
      string fname, lname;
-     int MemberID, wakeTime, sleepTime;
+     int MemberID, wakeTime, sleepTime, napTime, peakenTime;
     
      cin >>fname>>lname>>MemberID;
-	 cout<<"Thank you "<<fname<<" . Please insert your desired wake up and sleeping time. "<<endl;
-     cin>>wakeTime>>sleepTime;
+	 cout<<"Thank you "<<fname<<" . Please insert your desired WAKE UP, SLEEPING, NAP, and PEAK ENERGY times. "<<endl;
+     cin>>wakeTime>>sleepTime>>napTime>>peakenTime;
      
      if (exists_already(MemberID)) cout<<  "Error! The ID number already exists "<< endl;
 	
       else {
-		MemberA.assign(fname, lname, MemberID, wakeTime, sleepTime);
-	    Members[num++] = new Member(fname, lname, MemberID, wakeTime, sleepTime);
+		MemberA.assign(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakenTime);
+	    Members[num++] = new Member(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakenTime);
         }
 cout<<endl;
 }
@@ -55,6 +55,7 @@ cout<<endl;
 void delet () 
 {
 int MemberID;
+cout<<"Enter Member ID: ";
 cin>>MemberID;		 
 	        int i;
 	for (i=0; i<num; i++)
@@ -69,6 +70,24 @@ cin>>MemberID;
 	else	 MemberA.remove(MemberID);
 	
 
+}
+
+//This function modify member info 
+void modify ()
+{
+int MemberID;
+cout<<"Enter member ID: ";
+cin>>MemberID;
+               int i;
+	for (i=0; i<num; i++)
+		if (Members[i]->isId(MemberID))
+	{
+			break;
+	}
+        if (i==num) cout<<"wrong ID"<<endl;
+
+        else MemberA.change(MemberID);
+	
 }
 
 // This function will show the information
@@ -88,14 +107,15 @@ while (1)
 	string input;
 	cout << "---  Intelligent Lighting Control System  --- "<<endl<<"\n\nWelcome "<<endl;
 	cout<<"\n\n Menu Options:"<<endl<<"1. Add"<<endl<<"2. Remove"<<endl;
-	cout<<"3. Print"<<endl<<"4. Quit"<<endl<<"\nCommands are case sensitive. Insert them in lower case please"<<endl;
+	cout<<"3. Print"<<endl<<"4. Quit"<<endl<<"5. Modify"<<endl<<"\nCommands are case sensitive. Insert them in lower case please"<<endl;
 	cin >> input;
 	
 	//redirecting the program to the correct function
 			if (input=="print") print();
 			else if (input=="quit" ) exit(0);
 			else if (input=="remove") delet  ();
-			else if (input=="add" )   insert (); 
+			else if (input=="add" )   insert ();
+                        else if (input=="modify") modify(); 
 		    else { cout << "Error!" << endl;}
 	}
 
