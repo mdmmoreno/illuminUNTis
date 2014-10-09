@@ -18,15 +18,16 @@ string md_fN;
 string md_lN;
 int md_wakeTime;
 int md_sleepTime;
+int md_napTime;
+int md_peakenTime;
 int	md_MemberID;
-
 
 
 
 	public:
            
 Member();
-Member( string fname, string lname, int MemberID, int wakeTime, int sleepTime); // Constructor
+Member( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakenTime); // Constructor
 
 
 bool isId(int MemberID);
@@ -34,6 +35,8 @@ string retfname();
 string retlname();
 int retwakeTime();
 int retsleepTime();
+int retnapTime();
+int retpeakenTime();
 int retMemberID();
 bool removed; 
 
