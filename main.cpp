@@ -3,15 +3,11 @@
 #include "MemberArray.h"
 #include "MemberArray.cpp"
 
-/*
-T.A. I know it's good practice to include header files. 
-However, I'm submitting my program the way it compiles in
-the CSE machines.
-*/
+
 
 
 using namespace std;
-//=====variables constantes/ constants
+//=====constants
 int MAX = 10;
 int num = 0;
 
