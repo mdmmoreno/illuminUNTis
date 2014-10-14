@@ -6,11 +6,11 @@
 
 using namespace std; 
 //Constructor
-Member::Member(): md_MemberID(), md_fN (),md_lN(), md_wakeTime(), md_sleepTime(){}
+Member::Member(): md_MemberID(), md_fN (),md_lN(), md_wakeTime(), md_sleepTime(), md_napTime(), md_peakEnergyTime(){}
 
 //Initialiazing data members
-Member::Member  (string fname, string lname, int MemberID, int wakeTime, int sleepTime ) 
-: md_fN(fname), md_lN(lname), md_MemberID(MemberID), md_wakeTime(wakeTime), md_sleepTime(sleepTime) 
+Member::Member  (string fname, string lname, int MemberID, int wakeTime, int sleepTime,  int napTime, int peakEnergyTime ) 
+: md_fN(fname), md_lN(lname), md_MemberID(MemberID), md_wakeTime(wakeTime), md_sleepTime(sleepTime), md_napTime(napTime), md_peakEnergyTime(peakEnergyTime)
 {
                 removed = false;
 }// Constructor END
@@ -42,3 +42,9 @@ int Member::retsleepTime(){
 int Member::retMemberID() {
        return md_MemberID;//return the id
        }
+int Member::retnapTime() {
+    return md_napTime;
+}
+int Member::retpeakEnergyTime() {
+    return md_peakEnergyTime;
+}
