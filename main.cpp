@@ -31,18 +31,18 @@ bool exists_already (int MemberID)
 void insert () 
 {
 cout<<"\nPlease insert your first name, last name and ID number. "<<endl;
-     string fname, lname;
-     int MemberID, wakeTime, sleepTime, napTime, peakenTime;
+     string fname, lname, am, pm;;
+     int MemberID, wakeTime, sleepTime, napTime, peakEnergyTime;
     
      cin >>fname>>lname>>MemberID;
-	 cout<<"Thank you "<<fname<<" . Please insert your desired WAKE UP, SLEEPING, NAP, and PEAK ENERGY times. "<<endl;
-     cin>>wakeTime>>sleepTime>>napTime>>peakenTime;
+	 cout<<"Thank you "<<fname<<". "<<endl<<"\nPlease insert your desired WAKE UP, SLEEPING, NAP, and PEAK ENERGY times. "<<endl;
+     cin>>wakeTime>>am>>sleepTime>>pm>>napTime>>pm>>peakEnergyTime>>pm;
      
      if (exists_already(MemberID)) cout<<  "Error! The ID number already exists "<< endl;
 	
       else {
-		MemberA.assign(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakenTime);
-	    Members[num++] = new Member(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakenTime);
+		MemberA.assign(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime);
+	    Members[num++] = new Member(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime);
         }
 cout<<endl;
 }
@@ -69,7 +69,7 @@ cin>>MemberID;
 }
 
 //This function modify member info 
-void modify ()
+/*void modify ()
 {
 int MemberID;
 cout<<"Enter member ID: ";
@@ -84,7 +84,7 @@ cin>>MemberID;
 
         else MemberA.change(MemberID);
 	
-}
+}*/
 
 // This function will show the information
 void print ()
@@ -111,7 +111,7 @@ while (1)
 			else if (input=="quit" ) exit(0);
 			else if (input=="remove") delet  ();
 			else if (input=="add" )   insert ();
-                        else if (input=="modify") modify(); 
+           // else if (input=="modify") modify(); 
 		    else { cout << "Error!" << endl;}
 	}
 
