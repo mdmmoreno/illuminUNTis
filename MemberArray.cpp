@@ -20,23 +20,23 @@ MemberArray::MemberArray()
 /*
 This function will create a node with each index(id) inserted
 */                          
-void MemberArray::assign( string fname, string lname, int MemberID, int wakeTime, int sleepTime){
+void MemberArray::assign( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime){
            int index;
            index = MemberID % TSIZE;//mod function
            
 		   //if the id inserted is not causing any collision, do this
            if (array[index]==NULL)
-           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime);
+           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime);
            
 		   //this else if is for when there's a collision
            else if( array[index]!=NULL)
 				{
-					assign2 (fname, lname, MemberID, wakeTime, sleepTime);
+					assign2 (fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime);
           		 
 				}
  }
 //-----------------Second function-- h(x)+i^2) mod B
-void MemberArray::assign2( string fname, string lname, int MemberID, int wakeTime, int sleepTime){
+void MemberArray::assign2( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime){
            int index;
            /*
            this function is being assigned for a collision
@@ -50,7 +50,7 @@ void MemberArray::assign2( string fname, string lname, int MemberID, int wakeTim
 		empty, insert the info here then 
 		*/
 	   if ( array[index]==NULL)                             
-           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime); 
+           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime); 
 		/*
 		if we have a second collision, meaning the index is already
 		containing information, then we run the formula again incrementing 
@@ -59,7 +59,7 @@ void MemberArray::assign2( string fname, string lname, int MemberID, int wakeTim
 		else {
 		i++;
               index =( ((MemberID % TSIZE)+ (i*i))%TSIZE) ;
-		      array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime);
+		      array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime);
 			}
        
      }
@@ -109,7 +109,9 @@ void MemberArray::show(){
          cout<<array[index]->retlname()<<" ";
          cout<<array[index]->retMemberID()<<" ";
          cout<<array[index]->retwakeTime()<<" ";
-         cout<<array[index]->retsleepTime();
+         cout<<array[index]->retsleepTime()<<" ";
+         cout<<array[index]->retnapTime()<<" ";
+         cout<<array[index]->retpeakEnergyTime()<<" ";
          cout<<endl<<endl;
          }
          
@@ -127,7 +129,9 @@ void MemberArray::show(){
          cout<<array[index]->retlname()<<" ";
          cout<<array[index]->retMemberID()<<" ";
          cout<<array[index]->retwakeTime()<<" ";
-         cout<<array[index]->retsleepTime();
+         cout<<array[index]->retsleepTime()<<" ";
+         cout<<array[index]->retnapTime()<<" ";
+         cout<<array[index]->retpeakEnergyTime()<<" ";
          cout<<endl<<endl; 
               }
      }
