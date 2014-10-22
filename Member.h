@@ -16,19 +16,24 @@ friend class MemberArray;
 
 string md_fN;
 string md_lN;
+int	md_MemberID;
+//circadian settings
 int md_wakeTime;
 int md_sleepTime;
-int	md_MemberID;
 int md_napTime;
 int md_peakEnergyTime;
-
+//color settings
+int md_wakeLight;
+int md_sleepLight;
+int md_napLight;
+int md_peakEnergyLight;
 
 
 
 	public:
            
 Member();
-Member( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime); // Constructor
+Member( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight); // Constructor
 
 
 bool isId(int MemberID);
@@ -39,6 +44,10 @@ int retsleepTime();
 int retnapTime();
 int retpeakEnergyTime();
 int retMemberID();
+int retwakeLight();
+int retsleepLight();
+int retnapLight();
+int retpeakEnergyLight();
 bool removed; 
 
 };
