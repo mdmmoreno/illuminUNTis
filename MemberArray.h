@@ -15,11 +15,11 @@ class MemberArray {
 			
 	public: 
 		MemberArray();
-		MemberArray( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime); 
+		MemberArray( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight); 
 		
 		
-		void assign (string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime); 
-		void assign2 (string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime); 
+		void assign (string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight); 
+		void assign2 (string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight); 
 		void remove (int MemberID);
 		void show();
 		
