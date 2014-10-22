@@ -16,6 +16,7 @@ Member **Members = new Member* [MAX];
 
 MemberArray MemberA;
 
+
 //=====will check for the id
 bool exists_already (int MemberID) 
 {
@@ -30,19 +31,39 @@ bool exists_already (int MemberID)
 //We will add the Member info with this function
 void insert () 
 {
-cout<<"\nPlease insert your first name, last name and ID number. "<<endl;
-     string fname, lname, am, pm;;
+cout<<"\nPlease enter your first name, last name and ID number. "<<endl;
+     string fname, lname, am, pm, Nishimura;
      int MemberID, wakeTime, sleepTime, napTime, peakEnergyTime;
+     int wakeLight, sleepLight, napLight, peakEnergyLight;
     
      cin >>fname>>lname>>MemberID;
-	 cout<<"Thank you "<<fname<<". "<<endl<<"\nPlease insert your desired WAKE UP, SLEEPING, NAP, and PEAK ENERGY times. "<<endl;
-     cin>>wakeTime>>am>>sleepTime>>pm>>napTime>>pm>>peakEnergyTime>>pm;
+	 cout<<"Thank you "<<fname<<". "<<endl<<"\nPlease enter your desired Circadian Settings"<<endl;
+     cout<<"-WAKE UP TIME:";
+     cin>>wakeTime>>am;
+     cout<<"-SLEEP TIME: ";
+     cin>>sleepTime>>am;
+     cout<<"-NAP TIME: ";
+     cin>>napTime>>am;
+     cout<<"-PEAK ENERGY TIME: ";
+     cin>>peakEnergyTime>>am;
+     
+     cout<<"Thank you "<<fname<<". "<<endl<<"\nPlease enter your desired Lighting Settings"<<endl;
+     cout<<"-WAKE UP LIGHT:";
+     cin>>wakeLight>>am;
+     cout<<"-SLEEP LIGHT: ";
+     cin>>sleepLight>>am;
+     cout<<"-NAP LIGHT: ";
+     cin>>napLight>>am;
+     cout<<"-PEAK ENERGY LIGHT: ";
+     cin>>peakEnergyLight>>am;
+     
      
      if (exists_already(MemberID)) cout<<  "Error! The ID number already exists "<< endl;
 	
       else {
-		MemberA.assign(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime);
-	    Members[num++] = new Member(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime);
+		MemberA.assign(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime, wakeLight, sleepLight, napLight, peakEnergyLight);
+	    Members[num++] = new Member(fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime, wakeLight, sleepLight, napLight, peakEnergyLight);
+        
         }
 cout<<endl;
 }
@@ -101,10 +122,20 @@ void funcion() {
 while (1)
 	{
 	string input;
-	cout << "---  Intelligent Lighting Control System  --- "<<endl<<"\n\nWelcome "<<endl;
-	cout<<"\n\n Menu Options:"<<endl<<"1. Add"<<endl<<"2. Remove"<<endl;
-	cout<<"3. Print"<<endl<<"4. Quit"<<endl<<"5. Modify"<<endl<<"\nCommands are case sensitive. Insert them in lower case please"<<endl;
-	cin >> input;
+	cout<<"            ---  Intelligent Lighting Control System  --- "<<endl;
+    cout<<"            *                                            *"<<endl;
+    cout<<"            *                Welcome                     *"<<endl;
+    cout<<"            *                                            *"<<endl;
+    cout<<"            *____________________________________________*"<<endl;
+    
+    cout<<"   \n \n   *New Member = new       *Existing Member = Member ID"<<endl;
+    cout<<endl<<"\nCommands are case sensitive. Insert them in lower case please"<<endl;
+    cin>>input;
+    
+    if (input=="new"){
+	                  cout<<"\n\n Menu Options:"<<endl<<"1. Add"<<endl;
+                      cout<<"2. Quit"<<endl<<"\nCommands are case sensitive. Insert them in lower case please"<<endl;
+	                  cin >> input;
 	
 	//redirecting the program to the correct function
 			if (input=="print") print();
@@ -113,9 +144,11 @@ while (1)
 			else if (input=="add" )   insert ();
            // else if (input=="modify") modify(); 
 		    else { cout << "Error!" << endl;}
-	}
+           }
+           
+      else  { print(); }
 
-
+}
 
 
 }
