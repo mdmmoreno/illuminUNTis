@@ -20,23 +20,27 @@ MemberArray::MemberArray()
 /*
 This function will create a node with each index(id) inserted
 */                          
-void MemberArray::assign( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime){
-           int index;
-           index = MemberID % TSIZE;//mod function
+void MemberArray::assign( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight){
+           int index, index2;
+           int Number= 3445;
+           index2= Number % TSIZE;
+           index = MemberID % TSIZE;
            
+           //mod function
+           //array[index2]= new Member ("marina","nishimura",MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime); 
 		   //if the id inserted is not causing any collision, do this
            if (array[index]==NULL)
-           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime);
+           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime, wakeLight, sleepLight, napLight, peakEnergyLight);
            
 		   //this else if is for when there's a collision
            else if( array[index]!=NULL)
 				{
-					assign2 (fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime);
+					assign2 (fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime, wakeLight, sleepLight, napLight, peakEnergyLight);
           		 
 				}
  }
 //-----------------Second function-- h(x)+i^2) mod B
-void MemberArray::assign2( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime){
+void MemberArray::assign2( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight){
            int index;
            /*
            this function is being assigned for a collision
@@ -50,16 +54,17 @@ void MemberArray::assign2( string fname, string lname, int MemberID, int wakeTim
 		empty, insert the info here then 
 		*/
 	   if ( array[index]==NULL)                             
-           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime); 
+           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime,wakeLight, sleepLight, napLight, peakEnergyLight); 
+           
 		/*
 		if we have a second collision, meaning the index is already
 		containing information, then we run the formula again incrementing 
 		the i 
 		*/
-		else {
+ 	else {
 		i++;
               index =( ((MemberID % TSIZE)+ (i*i))%TSIZE) ;
-		      array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime);
+		      array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime, wakeLight, sleepLight, napLight, peakEnergyLight);
 			}
        
      }
@@ -97,12 +102,26 @@ void MemberArray::show(){
      I broke this code into two parts so the last element
      in the array prints out and breaks a new line
      */
+      int  index2;
+      int Number= 3445;
+      index2= Number % TSIZE;
      for (int index=0; index<TSIZE-1;index++)
      {    
         if (array[index]==NULL) cout<<"Empty"<<endl<<endl;
          
         else if (array[index]->removed) cout<<"Deleted"<<endl<<endl;
-        
+        else if (array[index2]!= NULL)
+         {
+         cout<<array[index2]->retfname()<<" ";
+         cout<<array[index2]->retlname()<<" ";
+         cout<<array[index2]->retMemberID()<<" ";
+         cout<<array[index2]->retwakeTime()<<" ";
+         cout<<array[index2]->retsleepTime()<<" ";
+         cout<<array[index2]->retnapTime()<<" ";
+         cout<<array[index2]->retpeakEnergyTime()<<" ";
+         cout<<endl<<endl;
+         }
+         
         else 
          {
          cout<<array[index]->retfname()<<" ";
@@ -114,6 +133,8 @@ void MemberArray::show(){
          cout<<array[index]->retpeakEnergyTime()<<" ";
          cout<<endl<<endl;
          }
+         
+         
          
          
      }   
