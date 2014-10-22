@@ -6,11 +6,10 @@
 
 using namespace std; 
 //Constructor
-Member::Member(): md_MemberID(), md_fN (),md_lN(), md_wakeTime(), md_sleepTime(), md_napTime(), md_peakEnergyTime(){}
+Member::Member(): md_MemberID(), md_fN (),md_lN(), md_wakeTime(), md_sleepTime(), md_napTime(), md_peakEnergyTime(), md_wakeLight(), md_sleepLight(), md_napLight(), md_peakEnergyLight(){}
 
 //Initialiazing data members
-Member::Member  (string fname, string lname, int MemberID, int wakeTime, int sleepTime,  int napTime, int peakEnergyTime ) 
-: md_fN(fname), md_lN(lname), md_MemberID(MemberID), md_wakeTime(wakeTime), md_sleepTime(sleepTime), md_napTime(napTime), md_peakEnergyTime(peakEnergyTime)
+Member::Member  (string fname, string lname, int MemberID, int wakeTime, int sleepTime,  int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight ): md_fN(fname), md_lN(lname), md_MemberID(MemberID), md_wakeTime(wakeTime), md_sleepTime(sleepTime), md_napTime(napTime), md_peakEnergyTime(peakEnergyTime), md_wakeLight(wakeLight), md_sleepLight(sleepLight), md_napLight(napLight), md_peakEnergyLight(peakEnergyLight)
 {
                 removed = false;
 }// Constructor END
@@ -47,4 +46,16 @@ int Member::retnapTime() {
 }
 int Member::retpeakEnergyTime() {
     return md_peakEnergyTime;
+}
+int Member::retwakeLight() {
+    return md_wakeLight;
+}
+int Member::retsleepLight() {
+    return md_sleepLight;
+}
+int Member::retnapLight(){
+    return md_napLight;    
+}
+int Member::retpeakEnergyLight(){
+    return md_peakEnergyLight;
 }
