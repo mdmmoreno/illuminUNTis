@@ -1,5 +1,5 @@
-#ifndef STUDENT_H_
-#define STUDENT_H_
+#ifndef MEMBER_H_
+#define MEMBER_H_
 
 
 #include <cstdlib>
