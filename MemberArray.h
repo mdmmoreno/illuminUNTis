@@ -1,28 +1,21 @@
-#ifndef STUDENTARRAY_H_	
-#define STUDENTARRAY_H_
+#ifndef MEMBERARRAY_H_	
+#define MEMBERARRAY_H_
 #include <cstdlib>
+#include <vector>
 #include "Member.cpp"
 
 
-
-
-
+using namespace std;
 
 class MemberArray {
-	private:
-		int md_MemberID;
-		Member* array[10];
-			
-	public: 
+	public:
+		vector <Member> members;
 		MemberArray();
-		MemberArray( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight); 
-		
-		
-		void assign (string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight); 
-		void assign2 (string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight); 
-		void remove (int MemberID);
-		void show();
-		
+		void modify();
+		void create();
+		void del();
+		int find(int); // returns -1 if not found
+		void displayAll();
 };
 
 #endif
