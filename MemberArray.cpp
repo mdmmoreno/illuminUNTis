@@ -5,154 +5,159 @@
 
 
 using namespace std;
-int TSIZE =10;
+int MAXVALUE = 255;
+void MemberArray::modify(){
 
+     int Id;
+     string am;
+
+     cout << "Member ID: ";
+     cin >> Id;
+
+     int index = find(Id);
+
+     //verify find != -1
+
+     cout<<"-WAKE UP TIME:";
+     cin>>members[index].md_wakeTime>>am;
+
+     cout<<"-SLEEP TIME: ";
+     cin>>members[index].md_sleepTime>>am;
+
+     cout<<"-NAP TIME: ";
+     cin>>members[index].md_napTime>>am;
+
+     cout<<"-PEAK ENERGY TIME: ";
+     cin>>members[index].md_peakEnergyTime>>am;
+
+     cout<<"Thank you "<<members[index].md_fN<<". "<<endl;
+     cout<<"\nPlease enter your desired Lighting Settings: (R) (G) (B)"<<endl; 
+     cout<<"-WAKE UP LIGHT:";
+
+     cin>>members[index].md_wakeLightR>>members[index].md_wakeLightG>>members[index].md_wakeLightB;
+
+     cout<<"-SLEEP LIGHT: ";
+     cin>>members[index].md_sleepLightR>>members[index].md_sleepLightG>>members[index].md_sleepLightB;
+
+     cout<<"-NAP LIGHT: ";
+     cin>>members[index].md_napLightR>>members[index].md_napLightG>>members[index].md_napLightB;
+
+     cout<<"-PEAK ENERGY LIGHT: ";
+     cin>>members[index].md_peakEnergyLightR>>members[index].md_peakEnergyLightG>>members[index].md_peakEnergyLightB;
+
+     cout << "Modified: " << members[index].md_fN << endl;
+}
+void MemberArray::create(){
+    
+	Member temp;
+	cout<<"\nPlease enter your first name, last name and ID number. "<<endl;
+//We need to create boxes to retain this information
+     string am; // What's this for?  Answer: to specify the meridian period (am, pm)
+
+     cin >>temp.md_fN>>temp.md_lN>>temp.md_MemberID;
+     cout<<"Thank you "<<temp.md_fN<<". "<<endl<<"\nPlease enter your desired Circadian Settings: (TIME) (MERDIAN PERIOD)"<<endl;
+
+     cout<<"-WAKE UP TIME:";
+     cin>>temp.md_wakeTime>>am;
+
+     cout<<"-SLEEP TIME: ";
+     cin>>temp.md_sleepTime>>am;
+
+     cout<<"-NAP TIME: ";
+     cin>>temp.md_napTime>>am;
+
+     cout<<"-PEAK ENERGY TIME: ";
+     cin>>temp.md_peakEnergyTime>>am;
+
+     cout<<"Thank you "<<temp.md_fN<<". "<<endl<<"\nPlease enter your desired Lighting Settings: (R) (G) (B)"<<endl;
+     cout<<"-WAKE UP LIGHT:";
+    //in case RGB  values are out of range
+    do{
+         cin>>temp.md_wakeLightR>>temp.md_wakeLightG>>temp.md_wakeLightB;
+
+         if(temp.md_wakeLightR > MAXVALUE || temp.md_wakeLightG > MAXVALUE || temp.md_wakeLightB > MAXVALUE)
+            cout<<"ERROR: RGB value(s) invalid. Enter values again (0-255): "<<endl;
+         else{
+              break;
+         }
+     }while(temp.md_wakeLightR > MAXVALUE || temp.md_wakeLightG > MAXVALUE || temp.md_wakeLightB > MAXVALUE);
+
+     cout<<"-SLEEP LIGHT: ";
+    //in case RGB  values are out of range
+    do{
+         cin>>temp.md_sleepLightR>>temp.md_sleepLightG>>temp.md_sleepLightB;
+
+         if(temp.md_sleepLightR > MAXVALUE || temp.md_sleepLightG > MAXVALUE || temp.md_sleepLightB > MAXVALUE)
+            cout<<"ERROR: RGB value(s) invalid. Enter values again (0-255): "<<endl;
+         else{
+              break;
+         }
+     }while(temp.md_sleepLightR > MAXVALUE || temp.md_sleepLightG > MAXVALUE || temp.md_sleepLightB > MAXVALUE);
+
+     cout<<"-NAP LIGHT: ";
+    //in case RGB  values are out of range
+    do{
+         cin>>temp.md_napLightR>>temp.md_napLightG>>temp.md_napLightB;
+
+         if(temp.md_napLightR > MAXVALUE || temp.md_napLightG > MAXVALUE || temp.md_napLightB > MAXVALUE)
+            cout<<"ERROR: RGB value(s) invalid. Enter values again (0-255): "<<endl;
+         else{
+              break;
+         }
+     }while(temp.md_napLightR > MAXVALUE || temp.md_napLightG > MAXVALUE || temp.md_napLightB > MAXVALUE);
+
+
+     cout<<"-PEAK ENERGY LIGHT: ";
+    //in case RGB  values are out of range
+    do{
+         cin>>temp.md_peakEnergyLightR>>temp.md_peakEnergyLightG>>temp.md_peakEnergyLightB;
+
+         if(temp.md_peakEnergyLightR > MAXVALUE || temp.md_peakEnergyLightG > MAXVALUE || temp.md_peakEnergyLightB > MAXVALUE)
+            cout<<"ERROR: RGB value(s) invalid. Enter values again (0-255): "<<endl;
+         else{
+              break;
+         }
+     }while(temp.md_peakEnergyLightR > MAXVALUE || temp.md_peakEnergyLightG > MAXVALUE || temp.md_peakEnergyLightB > MAXVALUE);
+
+ if (find(temp.md_MemberID) == -1) {
+	members.push_back(temp);
+ } else {
+ 	cout<<  "Error! The ID number already exists "<< endl;
+   } 
+    cout<<endl;
+
+}
+
+void MemberArray::displayAll(){
+	for(int i = 0; i < members.size(); i++) {
+		cout<< "Profile " << i+1 << ":" << members[i].md_fN << endl;
+	}
+
+	if(members.size() == 0){
+		cout << "Nothing to print\n";
+	}
+}
+
+void MemberArray::del(){
+	int ID, index;
+	cout << "Member ID to remove: ";
+	cin >> ID;
+	index = find(ID);
+	members.erase(members.begin() + index);
+}
+
+int MemberArray::find(int findID){
+	for(int i=0; i<members.size(); i++) {
+		if(members[i].md_MemberID == findID){
+			return i;
+		}
+	}
+	return -1;
+}
+// End of my stuff
 
 //Constructor
 MemberArray::MemberArray() 
 {
-// the array is being filled with null
-          for (int i=0; i<TSIZE; i++) {this->array[i]= NULL;}
-}   
-
-                    
-//------------ Assign  
-/*
-This function will create a node with each index(id) inserted
-*/                          
-void MemberArray::assign( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight){
-           int index, index2;
-           int Number= 3445;
-           index2= Number % TSIZE;
-           index = MemberID % TSIZE;
-           
-           //mod function
-           //array[index2]= new Member ("marina","nishimura",MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime); 
-		   //if the id inserted is not causing any collision, do this
-           if (array[index]==NULL)
-           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime, wakeLight, sleepLight, napLight, peakEnergyLight);
-           
-		   //this else if is for when there's a collision
-           else if( array[index]!=NULL)
-				{
-					assign2 (fname, lname, MemberID, wakeTime, sleepTime, napTime, peakEnergyTime, wakeLight, sleepLight, napLight, peakEnergyLight);
-          		 
-				}
- }
-//-----------------Second function-- h(x)+i^2) mod B
-void MemberArray::assign2( string fname, string lname, int MemberID, int wakeTime, int sleepTime, int napTime, int peakEnergyTime, int wakeLight, int sleepLight, int napLight, int peakEnergyLight){
-           int index;
-           /*
-           this function is being assigned for a collision
-           since i has to go from 0 to 9 there's a for loop
-           once it found an empty box it will create the node
-           */
-	    int i=1;
-	    index =( ((MemberID % TSIZE)+ (i*i))%TSIZE) ;
-		/*
-		here if the new index that is being assigned is 
-		empty, insert the info here then 
-		*/
-	   if ( array[index]==NULL)                             
-           array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime,wakeLight, sleepLight, napLight, peakEnergyLight); 
-           
-		/*
-		if we have a second collision, meaning the index is already
-		containing information, then we run the formula again incrementing 
-		the i 
-		*/
- 	else {
-		i++;
-              index =( ((MemberID % TSIZE)+ (i*i))%TSIZE) ;
-		      array[index] = new Member (fname, lname, MemberID,  wakeTime, sleepTime, napTime, peakEnergyTime, wakeLight, sleepLight, napLight, peakEnergyLight);
-			}
-       
-     }
-
-//-------------------Remove
-void MemberArray::remove(int MemberID){
-           int i=1;
-	       int index;
-           index = MemberID % TSIZE; 
-        //checking for id's that did not had a collision   
-         if (array[index]->retMemberID()==MemberID)
-		{ 
-			cout<<"true"<<endl;
-			array[index]->removed= true;
-		}
-        /* 
-		in case the id does not match the box, we have two escenarios
-		the id had a collision  OR the id doesn't exist
-		
-		*/
-		else if (array[index]->retMemberID()!= MemberID)
-
-		{
-		i++;
-              index =( ((MemberID % TSIZE)+ (i*i))%TSIZE) ;
-              cout<<"true"<<endl;
-			  array[index] ->removed= true;
-		}
-		
-}
-
-//----------------Show
-void MemberArray::show(){
-     /*
-     I broke this code into two parts so the last element
-     in the array prints out and breaks a new line
-     */
-      int  index2;
-      int Number= 3445;
-      index2= Number % TSIZE;
-     for (int index=0; index<TSIZE-1;index++)
-     {    
-        if (array[index]==NULL) cout<<"Empty"<<endl<<endl;
-         
-        else if (array[index]->removed) cout<<"Deleted"<<endl<<endl;
-        else if (array[index2]!= NULL)
-         {
-         cout<<array[index2]->retfname()<<" ";
-         cout<<array[index2]->retlname()<<" ";
-         cout<<array[index2]->retMemberID()<<" ";
-         cout<<array[index2]->retwakeTime()<<" ";
-         cout<<array[index2]->retsleepTime()<<" ";
-         cout<<array[index2]->retnapTime()<<" ";
-         cout<<array[index2]->retpeakEnergyTime()<<" ";
-         cout<<endl<<endl;
-         }
-         
-        else 
-         {
-         cout<<array[index]->retfname()<<" ";
-         cout<<array[index]->retlname()<<" ";
-         cout<<array[index]->retMemberID()<<" ";
-         cout<<array[index]->retwakeTime()<<" ";
-         cout<<array[index]->retsleepTime()<<" ";
-         cout<<array[index]->retnapTime()<<" ";
-         cout<<array[index]->retpeakEnergyTime()<<" ";
-         cout<<endl<<endl;
-         }
-         
-         
-         
-         
-     }   
- // last element to print
-         int index=9;
-         if (array[index]==NULL)cout<<"Empty"<<endl<<endl;
-         
-         else if (array[index]->removed) cout<<"Deleted"<<endl<<endl;
-         
-         else 
-         {
-         cout<<array[index]->retfname()<<" ";
-         cout<<array[index]->retlname()<<" ";
-         cout<<array[index]->retMemberID()<<" ";
-         cout<<array[index]->retwakeTime()<<" ";
-         cout<<array[index]->retsleepTime()<<" ";
-         cout<<array[index]->retnapTime()<<" ";
-         cout<<array[index]->retpeakEnergyTime()<<" ";
-         cout<<endl<<endl; 
-              }
-     }
+	vector<Member> members;
+} 
